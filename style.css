@@ -20,11 +20,30 @@ body {
 	color: #333;
 }
 
+/*
+ 「wrap」スタイルは、ホームページの縦幅・横幅・位置を決めるためのスタイル
+  呼び出す時は、<div id="wrap">
+  width: 802px   - 横幅 802px
+  margin: 0 auto - コンテンツを画面中央に調整
+*/
 #wrap {
 	width: 802px;
 	margin: 0 auto;
 }
 
+/* 文書のヘッダ
+   ・border-left: 要素の左側の境界のプロパティをすべて設定  
+       1px     - 線の太さ
+       solid   - 1本線
+       #d4d4d4 - 淡いグレー色
+   ・background: 背景に関する指定
+	   url(xxx)- 背景の壁紙
+	   bottom  - 
+	   left    - 
+	   repeat-x- 横方向にのみ背景画像を繰り返して表示
+	   #106eb7 - 青色
+   # - とはID名をセレクタとする。
+*/
 #head {
 	border-left: 1px solid #d4d4d4;
 	border-right: 1px solid #d4d4d4;
@@ -35,6 +54,16 @@ body {
 	margin-bottom: 20px;
 }
 
+/* 見出し1
+   ・background: 背景に関する指定
+	   url(xxx)- 背景の壁紙
+	   top     - 
+	   left    - 
+	   no-repeat- 背景画像を一回だけ表示して繰り返しません。
+	・padding-left:- 左パディングを指定
+	・font-size:   - フォントのサイズを指定
+	・font-weight: - フォントの太さを指定
+*/
 h1 {
 	background: url(images/bg_ttl.png) top left no-repeat;
 	padding-left: 25px;
@@ -42,11 +71,31 @@ h1 {
 	font-weight: bold;
 }
 
+/* 見出し2
+	・font-weight:   - フォントの太さを指定
+	・margin-bottom: - 下マージンを指定
+*/
 h2 {
 	font-weight: bold;
 	margin-bottom: 0.5em;
 }
 
+/* contentタグ
+   ・padding:       - 領域内のスペース
+   ・background:    -  背景に関する指定
+	   url(xxx)     - 背景の壁紙
+	   left         - 
+	   bottom       - 
+	   no-repeat    -  背景画像を一回だけ表示して繰り返しません。
+	   #ecf7fc      - 淡い青色
+	・width:         - 幅を指定
+	・min-height:    - 高さの最小値を指定
+	・margin:        - 上下左右の領域外マージン
+	・margin-bottom: - 下マージンを指定
+	・font-size:     - フォントのサイズを指定
+
+   # - とはID名をセレクタとする。
+*/
 #content {
 	padding: 20px;
 	background: url(images/bg_content.png) left bottom no-repeat #ecf7fc;
@@ -57,27 +106,59 @@ h2 {
 	font-size: 153.9%;
 }
 
-* html #content {
+/* 
+	・height:        - 高さを指定
+*/
+*html #content {
 	height: 490px;
 }
 
+/* 段落
+	・line-height:        - 行の高さを指定
+	・margin-bottom:      - 下マージンを指定
+*/
 p {
 	line-height: 1.2em;
 	margin-bottom: 0.5em;
 }
 
+/* 定義型リスト
+	・margin-bottom:      - 下マージンを指定
+*/
 dl {
 	margin-bottom: 10px;
 }
+
+/* 定義する用語
+   ・border-left: 要素の左側の境界のプロパティをすべて設定  
+       5px                - 線の太さ
+       solid              - 1本線
+       #d4d4d4            - 淡いグレー色
+	・padding-left:       - 左パディングを指定
+	・margin-bottom:      - 下マージンを指定
+*/
 dt {
 	border-left: 5px solid #106eb7;
 	padding-left: 5px;
 	margin-bottom: 5px;
 }
+
+/* 用語に対する説明
+	・margin-bottom:      - 下マージンを指定
+*/
 dd {
 	margin-bottom: 0.5em;
 }
 
+/* 
+   ・background-color: - 背景色指定
+	   #BB1850         - つよいピンク
+	・color:           - 文字色を指定
+	   #fff            - 白
+	・font-size:       - フォントのサイズを指定
+	・padding:         - パディングを指定
+	・margin-left:　   - 左マージンを指定
+*/
 .required {
 	background-color: #BB1850;
 	color: #fff;
@@ -86,58 +167,133 @@ dd {
 	margin-left: 10px;
 }
 
+/* 
+	・width:         - 幅を指定
+	・text-align:    - ブロックコンテナ内の行の揃え位置・均等割付を指定する
+       right         - インラインレベルのコンテンツは、ラインボックスの右端に揃えられる
+   # - とはID名をセレクタとする。
+*/
 #foot {
 	width: 780px;
 	text-align: right;
 }
 
+/* <th>見出し用のセル, <td>データ用のセル
+	・border:         - ボーダーのスタイル・太さ・色を指定する
+	    1px           - ボーダー太さ
+	    solid         - 1本線
+	    #999          - 白
+	・padding:        - パディングを指定
+*/
 th, td {
 	border: 1px solid #999;
 	padding: 3px;
 }
 
+/* <th>見出し用のセル
+   ・background-color: - 背景色指定
+	   #106eb7         - シアン青色
+	・color:           - 文字色を指定
+	   #fff            - 白
+	・font-weight:     - フォントの太さを指定
+	   bold            - 一般的な太字の太さ
+*/
 th {
 	background-color: #106eb7;
 	color: #fff;
 	font-weight: bold;
 }
 
+/* <li>リストの項目
+	・list-style:      - リストの先頭記号
+	   circle          - 白丸
+	・margin-left:　   - 左マージンを指定
+	・margin-bottom:　 - 下マージンを指定
+*/
 li {
 	list-style: circle;
 	margin-left: 20px;
 	margin-bottom: 0.5em;
 }
 
+/* class="paging"
+	・margin-top:　    - 上マージンを指定
+	・text-align:     - ブロックコンテナ内の行の揃え位置・均等割付を指定する
+       center         - インラインレベルのコンテンツは、ラインボックスの中央に揃えられる
+*/
 .paging {
 	margin-top: 10px;
 	text-align: center;
 }
+
+/* class="paging" <li>
+	・display: 　    - 要素の表示形式
+	    inline       - 横に並べる
+	・list-style:    - リストの先頭記号
+	   none          - 示しない
+*/
 .paging li {
 	display: inline;
 	list-style: none;
 }
 
+/* class="error"
+	・font-size:　    - フォントのサイズを指定
+	・color:          - 文字色を指定
+	   #BB1850        - つよいピンク
+*/
 .error {
 	font-size: 90%;
 	color: #BB1850;
 }
 
+/* class="lead"
+	・font-size:　    - フォントのサイズを指定
+	・margin-bottom:　- 下マージンを指定
+	   #1em        　　- emは文字の高さを基準とした単位　1em=16px
+*/
 #lead {
 	margin-bottom: 1em;
 }
 
+/* class="msg"
+	・clear:    　    - 回り込みを解除する
+	    both          - 左寄せ、または右寄せされた全ての要素に対する回り込みを解除します。
+	・border-top:     - 上ボーダーのスタイルを指定する
+	   1px            - ボーダー太さ
+	   solid          - 1本線
+	   #ccc           - 
+	・padding:        - パディングを指定
+*/
 .msg {
 	clear: both;
 	border-top: 1px solid #ccc;
 	padding: 10px 0;
 }
+
+/* class="msg" <img>
+	・float:    　    - 左または右に寄せて配置する
+	    left          - 左寄せ
+	・margin-right:   - マージンに関する指定をまとめて行う
+	   5px            - 左マージン
+*/
 .msg img {
 	float: left;
 	margin-right: 5px;
 }
+
+/* class="msg" <p>
+	・margin 0:       - マージンに関する指定をまとめて行う 0
+*/
 .msg p {
 	margin: 0;
 }
+
+/* class="msg" <day>
+	・font-size:　    - フォントのサイズを指定
+	・color:          - 文字色を指定
+	   #999           - 沈んだグレー色
+*/
 .msg .day,
 .msg .day a {
 	font-size: 80%;

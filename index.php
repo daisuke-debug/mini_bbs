@@ -119,84 +119,86 @@
 
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>ひとこと掲示板</title>
+  <head>
+    <meta charset="UTF-8">
+    <!-- viewport:表示領域 ,"width=device-width:デバイス幅で表示 ,initial-scale:初期倍率 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- プラグマ指示子:常に標準モード ,content="ie=edge:IE最新バージョン標準モード-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ひとこと掲示板</title>
+    <!-- 外部スタイルシートリンク -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-	<link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-<div id="wrap">
-  <div id="head">
-    <h1>ひとこと掲示板</h1>
-  </div>
-  <div id="content">
-  	<div style="text-align: right"><a href="logout.php">ログアウト</a></div>
-    <form action="" method="post">
-      <dl>
-        <dt><?php print(htmlspecialchars($members['name'], ENT_QUOTES)); ?>さん、メッセージをどうぞ</dt>
-        <dd>
-          <!-- Message Boxに文字列('message'変数)を表示する -->
-          <textarea name="message" cols="50" rows="5"><?php print(htmlspecialchars($message, ENT_QUOTES)); ?></textarea>
-          <input type="hidden" name="reply_post_id" value="<?php print(htmlspecialchars($_REQUEST['res'], ENT_QUOTES)); ?>"/>
-        </dd>
-      </dl>
-      <div>
-        <p>
-          <input type="submit" value="投稿する" />
-        </p>
+  <body>
+    <div id="wrap">
+      <div id="head">
+        <h1>ひとこと掲示板</h1>
       </div>
-    </form>
+      <div id="content">
+        <div style="text-align: right"><a href="logout.php">ログアウト</a></div>
+        <form action="" method="post">
+          <dl>
+            <dt><?php print(htmlspecialchars($members['name'], ENT_QUOTES)); ?>さん、メッセージをどうぞ</dt>
+            <dd>
+              <!-- Message Boxに文字列('message'変数)を表示する -->
+              <textarea name="message" cols="50" rows="5"><?php print(htmlspecialchars($message, ENT_QUOTES)); ?></textarea>
+              <input type="hidden" name="reply_post_id" value="<?php print(htmlspecialchars($_REQUEST['res'], ENT_QUOTES)); ?>"/>
+            </dd>
+          </dl>
+          <div>
+            <p>
+              <input type="submit" value="投稿する" />
+            </p>
+          </div>
+        </form>
 
-    <!-- postsテーブル5件分の要素分ループする　-->
-    <?php foreach($posts as $post): ?>
-      <div class="msg">
-        <img src="member_picture/<?php print(htmlspecialchars($post['picture'], ENT_QUOTES)); ?>" width="48" height="48" alt="<?php print(htmlspecialchars($post['name'], ENT_QUOTES)); ?>" />
-        <!-- <段落> (postsテーブル[message])"-->
-        <p><?php print(htmlspecialchars($post['message'], ENT_QUOTES)); ?>
-          <!-- <インライン要素> -->
-          <span class="name">
-            <!-- (postsテーブル[name]) -->
-            <?php print(htmlspecialchars($post['name'], ENT_QUOTES)); ?>
-          </span>
-          <!-- [Re]リンク "index.php?(POST)res=postsテーブルid"-->
-          [<a href="index.php?res=<?php print(htmlspecialchars($post['id'], ENT_QUOTES)) ?>">Re</a>]          
-        </p>
-        <!-- <段落> -->
-        <p class="day">
-          <!-- <段落> [日付]リンク URLパラメータ "view.php?(postsテーブル[id])"-->
-          <a href="view.php?id=<?php print(htmlspecialchars($post['id'])); ?>">
-            <?php print(htmlspecialchars($post['created'], ENT_QUOTES)); ?>      
-          </a>
-          <?php if ($post['reply_message_id'] > 0): ?>
-            <!-- <段落> 返信元のメッセージリンク URLパラメータ "view.php?(postsテーブル[reply_message_id])"-->
-            <a href="view.php?id=<?php print(htmlspecialchars($post['reply_message_id'])); ?>">返信元のメッセージ</a>
+        <!-- postsテーブル5件分の要素分ループする　-->
+        <?php foreach($posts as $post): ?>
+          <div class="msg">
+            <img src="member_picture/<?php print(htmlspecialchars($post['picture'], ENT_QUOTES)); ?>" width="48" height="48" alt="<?php print(htmlspecialchars($post['name'], ENT_QUOTES)); ?>" />
+            <!-- <段落> (postsテーブル[message])"-->
+            <p><?php print(htmlspecialchars($post['message'], ENT_QUOTES)); ?>
+              <!-- <インライン要素> -->
+              <span class="name">
+                <!-- (postsテーブル[name]) -->
+                <?php print(htmlspecialchars($post['name'], ENT_QUOTES)); ?>
+              </span>
+              <!-- [Re]リンク "index.php?(POST)res=postsテーブルid"-->
+              [<a href="index.php?res=<?php print(htmlspecialchars($post['id'], ENT_QUOTES)) ?>">Re</a>]          
+            </p>
+            <!-- <段落> -->
+            <p class="day">
+              <!-- <段落> [日付]リンク URLパラメータ "view.php?(postsテーブル[id])"-->
+              <a href="view.php?id=<?php print(htmlspecialchars($post['id'])); ?>">
+                <?php print(htmlspecialchars($post['created'], ENT_QUOTES)); ?>      
+              </a>
+              <?php if ($post['reply_message_id'] > 0): ?>
+                <!-- <段落> 返信元のメッセージリンク URLパラメータ "view.php?(postsテーブル[reply_message_id])"-->
+                <a href="view.php?id=<?php print(htmlspecialchars($post['reply_message_id'])); ?>">返信元のメッセージ</a>
+              <?php endif; ?>
+              <!-- セッション[id]と (postsテーブル[mem_id])が等しい場合-->
+              <?php if ($_SESSION['id'] == $post['mem_id']): ?>
+                <!-- <段落> [削除]リンク URLパラメータ "delete.php?[id](postsテーブル[id])"-->
+                [<a href="delete.php?id=<?php print(htmlspecialchars($post['id'])); ?>" style="color: #F33;">削除</a>]
+              <?php endif; ?>
+            </p>
+          </div>
+        <?php endforeach; ?>
+
+        <ul class="paging">
+          <?php if ($page >1): ?>
+            <li><a href="index.php?page=<?php print($page-1); ?>">前のページへ</a></li>
+          <?php else: ?>
+            <li><a href="">前のページへ</a></li>
           <?php endif; ?>
-          <!-- セッション[id]と (postsテーブル[mem_id])が等しい場合-->
-          <?php if ($_SESSION['id'] == $post['mem_id']): ?>
-            <!-- <段落> [削除]リンク URLパラメータ "delete.php?[id](postsテーブル[id])"-->
-            [<a href="delete.php?id=<?php print(htmlspecialchars($post['id'])); ?>" style="color: #F33;">削除</a>]
+          <?php if ($page < $maxPage): ?>
+            <li><a href="index.php?page=<?php print($page+1); ?>">次のページへ</a></li>
+          <?php else: ?>
+            <li><a href="">次のページへ</a></li>
           <?php endif; ?>
-        </p>
+        </ul>
       </div>
-    <?php endforeach; ?>
-
-    <ul class="paging">
-      <?php if ($page >1): ?>
-        <li><a href="index.php?page=<?php print($page-1); ?>">前のページへ</a></li>
-      <?php else: ?>
-        <li><a href="">前のページへ</a></li>
-      <?php endif; ?>
-      <?php if ($page < $maxPage): ?>
-        <li><a href="index.php?page=<?php print($page+1); ?>">次のページへ</a></li>
-      <?php else: ?>
-        <li><a href="">次のページへ</a></li>
-      <?php endif; ?>
-    </ul>
-  </div>
-</div>
-</body>
+    </div>
+  </body>
 </html>
